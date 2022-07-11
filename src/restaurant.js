@@ -78,15 +78,29 @@ var newRestaurant = {
   },
 */
 
-function removeMenuItem(nameOfRestaurant, menuItem, itemType) {
-  for (var i = 0; i < nameOfRestaurant.menus[itemType].length; i++) {
-    if (nameOfRestaurant.menus[itemType][i].name.includes(menuItem)) {
-      nameOfRestaurant.menus[itemType].splice(i, 1)
-      return `No one is eating our ${menuItem} - it has been removed from the ${itemType} menu!`;
+function removeMenuItem(restaurant, itemName, itemType) {
+  for (var i = 0; i < restaurant.menus[itemType].length; i++) {
+    if (restaurant.menus[itemType][i].name === itemName) {
+      restaurant.menus[itemType].splice(i, 1)
+      return `No one is eating our ${itemName} - it has been removed from the ${itemType} menu!`;
     }
   }
-    return `Sorry, we don't sell ${menuItem}, try adding a new recipe!`
+    return `Sorry, we don't sell ${itemName}, try adding a new recipe!`
 }
+
+// .includes is a string method, not an array method!
+
+/*
+function removeMenuItem(restaurant, itemName, itemType) {
+  for (var i = 0; i < restaurant.menus[itemType].length; i++) {
+    if (restaurant.menus[itemType][i].name.includes(itemName)) {
+      restaurant.menus[itemType].splice(i, 1)
+      return `No one is eating our ${itemName} - it has been removed from the ${itemType} menu!`;
+    }
+  }
+    return `Sorry, we don't sell ${itemName}, try adding a new recipe!`
+}
+*/
 
 /* function removeMenuItem(nameOfRestaurant, menuItem, itemType) {
   if (itemType === "breakfast" && nameOfRestaurant.menus.breakfast.indexOf(menuItem) > -1) {
